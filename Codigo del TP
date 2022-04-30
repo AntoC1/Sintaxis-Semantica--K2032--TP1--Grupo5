@@ -1,0 +1,151 @@
+/*
+TP1- Grupo5- CodeCraft
+Integrantes: 
+    Arias Solorza Aaron Fernando
+    Serrudo Candelaria
+    Hernandez Canetti Diego
+    Wang Antonio
+*/
+
+#include <stdio.h>
+
+int longitudDeCadena (char cadena[]);
+int digitocadena (char cadena[]);
+char* minusAMayus (char cadena[]);
+char* eliminarocurrencias (char cadena[], char cadenavacia[], char letra);
+char* concatenarcadenas (char cadena1[], char cadena2[]);
+char* insertarcaracter (char cadena[], char letra, int posicion);
+
+int main() {
+    char cadena[] = "cadenita";
+    char cadena1[] = "abc";
+    char cadena2[] = "dfg";
+    char cadena3[] = "123";
+    char cadenavacia[20];
+    char letra = 'A';
+    int posicion;
+
+    int longitud;
+    int digito;
+
+    //funcion 1
+    longitud = longitudDeCadena (cadena);
+    printf("Longitud: %i\n" ,longitud);
+    //funcion 2
+    digito = digitocadena (cadena3);
+    printf("Digito: %d\n" ,digito);
+    //funcion 3
+    printf("Mayuscula: %s\n", minusAMayus (cadena));
+    //funcion 4
+    printf("Eliminar ocurrencia: %s\n", eliminarocurrencias (cadena, cadenavacia, letra));
+    //funcion 5
+    printf("Cadena concatenada: %s\n", concatenarcadenas (cadena1, cadena2));
+    //funcion 6
+    printf("Cadena insertada: %s\n", insertarcaracter (cadena, letra, posicion));
+}
+
+int longitudDeCadena (char cadena[])
+{
+    int i = 0;
+    while(cadena[i]!='\0'){
+        i++;
+    }
+    return i;
+}
+
+int digitocadena (char cadena[])
+{
+    int x = 0;
+    int y;
+    int i;
+    for (i=0;cadena[i] != '\0';i++)
+    {
+        //cadena[i] =- 32;
+        if (cadena[i] == '0')
+            y = 0;
+        else if (cadena[i] == '1')
+            y = 1;
+        else if (cadena[i] == '2')
+            y = 2;
+        else if (cadena[i] == '3')
+            y = 3;
+        else if (cadena[i] == '4')
+            y = 4;
+        else if (cadena[i] == '5')
+            y = 5;
+        else if (cadena[i] == '6')
+            y = 6;
+        else if (cadena[i] == '7')
+            y = 7;
+        else if (cadena[i] == '8')
+            y = 8;
+        else if (cadena[i] == '9')
+            y = 9;
+        x = x * 10;
+        x = x + y;
+    }
+    return x;
+
+}
+
+char* minusAMayus (char cadena[])
+{
+    int j = 0;
+    while(cadena[j]!='\0'){
+        int aux = cadena[j];
+        if(aux>= 97 && aux<=122){
+            cadena[j] = aux - 32;
+        }
+        j++;
+    }
+    return cadena;
+}
+
+char* eliminarocurrencias (char cadena[], char cadenavacia[], char letra)
+{
+    int j = 0;
+    int i = 0;
+    while(cadena[j]!='\0'){
+        if(cadena[j]!=letra){
+            cadenavacia[i] = cadena[j];
+            i++;
+        }
+        j++;
+    }
+    return cadenavacia;
+}
+
+char* concatenarcadenas (char cadena1[], char cadena2[])
+{
+    int i = 0;
+    int j = 0;
+    while(cadena1[i] != '\0')
+    {
+        i++;
+    }
+    if (cadena1[i] == '\0')
+    {
+        while(cadena2[j] != '\0')
+        {
+            cadena1[i] = cadena2[j];
+            i++;
+            j++;
+        }
+    }
+    cadena1[i+1] = '\0';
+    return cadena1;
+}
+
+char* insertarcaracter (char cadena[], char letra, int posicion)
+{
+    char aux;
+    aux = cadena[posicion-1];
+    cadena[posicion-1] = letra;
+    while(cadena[posicion] != '\0')
+    {
+        cadena[posicion] = aux;
+        aux = cadena[posicion+1];
+        posicion ++;
+    }
+    return cadena;
+}
